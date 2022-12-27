@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../images/MainLogo-no-bg.png';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Header1.css';
-
+import Swal from 'sweetalert2';
 
 
 
 const Header1 = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, signOutUser } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
+    const handleLogoutUser = () => {
+        signOutUser()
+            .then(() => {
+                navigate('/login')
+            })
+            .catch(error => {
+                console.error(error.message)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Logout Failed',
+                })
+            })
+    }
 
 
 
@@ -60,22 +78,55 @@ const Header1 = () => {
                             >
                                 Completed Tasks
                             </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                to="/signup"
+                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none" title="Sign up"
+                            >
+                                Sign up
+                            </Link>
                         </li> */}
+
+
 
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
                         <NavLink to='/addTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Add Tasks</NavLink>
                         <NavLink to='/myTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">My Tasks</NavLink>
                         <NavLink to='/completedTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Completed Tasks</NavLink>
 
+                        {
+                            user?.email ?
+                                <div>
+                                    <Link
+                                        onClick={handleLogoutUser}
+                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-500 focus:shadow-outline focus:outline-none" title="Log Out"
+                                    >
+                                        Logout
+                                    </Link>
 
-                        <li>
-                            <Link
-                                href="/"
-                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none" title="Sign up"
-                            >
-                                Sign up
-                            </Link>
-                        </li>
+                                </div>
+                                :
+                                <div>
+                                    <Link
+                                        to="/login"
+                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-800  focus:shadow-outline focus:outline-none mr-4" title="Login"
+                                    >
+                                        Login
+                                    </Link>
+
+                                    <Link
+                                        to="/signup"
+                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign up"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </div>
+                        }
+
+
+
 
 
                     </ul>
@@ -166,15 +217,35 @@ const Header1 = () => {
                                                     Completed Tasks
                                                 </Link>
                                             </li>
-                                            <li>
-                                                <Link
-                                                    href="/"
-                                                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none"
-                                                    title="Sign up"
-                                                >
-                                                    Sign up
-                                                </Link>
-                                            </li>
+                                            
+                                            {
+                                                user?.email ?
+                                                    <div>
+                                                        <Link
+                                                            onClick={handleLogoutUser}
+                                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-700 focus:shadow-outline focus:outline-none" title="Log Out"
+                                                        >
+                                                            Logout
+                                                        </Link>
+
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <Link
+                                                            to="/login"
+                                                            className="w-full inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-800  focus:shadow-outline focus:outline-none mr-4 mb-4" title="Login"
+                                                        >
+                                                            Login
+                                                        </Link>
+
+                                                        <Link
+                                                            to="/signup"
+                                                            className="w-full inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign up"
+                                                        >
+                                                            Sign up
+                                                        </Link>
+                                                    </div>
+                                            }
                                         </ul>
                                     </nav>
                                 </div>
