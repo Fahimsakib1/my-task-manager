@@ -19,7 +19,7 @@ const MyTasks = () => {
 
     
     return (
-        <div>
+        <div className='mb-12'>
             <h1 className='text-center text-xl sm:text-xl md:text-3xl my-8 text-blue-700 '>{user?.email} You Have Added {tasks?.length} Tasks</h1>
 
             {

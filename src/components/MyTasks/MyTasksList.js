@@ -36,19 +36,22 @@ const MyTasksList = ({ task }) => {
             </div> */}
 
             <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100">
-                <img className="object-cover w-full h-96 md:h-52 md:w-56 p-2 rounded-2xl" src={taskImage} alt="" />
+                <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl " src={taskImage} alt="" />
                 <div className="p-4">
                     <div className='flex justify-around items-center gap-x-4 '>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Task: {taskName}</h5>
+                        
                         <div className='flex flex-1 justify-end items-center gap-x-6 '>
                             <FaRegEdit className='text-3xl text-blue-700 font-bold' title='Edit Task'></FaRegEdit>
                             <FaTrashAlt className='text-3xl flex justify-end text-red-600 font-bold' title='Delete Task'></FaTrashAlt>
                         </div>
                     </div>
-                    <p className="mb-3 font-normal text-gray-900 ">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order. Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                    
+                    <p className="mb-3 font-normal text-gray-900 ">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+
                     <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
-                        <p className='font-normal'>Added By: {userEmail}</p>
-                        <p className='font-normal'>Post Date: {taskPostedDate}</p>
+                        <p className='font-semibold flex flex-1 justify-start'>Added By: {userEmail}</p>
+                        <p className='font-semibold flex flex-1 justify-end mr-4'>Post Date: {taskPostedDate}</p>
                     </div>
 
                     <button type='submit' className='w-full py-[10px] font-semibold rounded text-white mt-4  bg-gradient-to-r from-purple-900 to-violet-900'>

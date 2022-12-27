@@ -142,7 +142,7 @@ const Header1 = () => {
                             className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
                             onClick={() => setIsMenuOpen(true)}
                         >
-                            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                            <svg className="w-6 text-white" viewBox="0 0 24 24">
                                 <path
                                     fill="currentColor"
                                     d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -195,7 +195,7 @@ const Header1 = () => {
                                         <ul className="space-y-4">
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/addTasks"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Add Task
@@ -203,7 +203,7 @@ const Header1 = () => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/myTasks"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     My Tasks
@@ -211,7 +211,7 @@ const Header1 = () => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/completedTasks"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Completed Tasks
