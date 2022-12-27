@@ -56,14 +56,14 @@ const Login = () => {
 
     return (
         <div>
-            <div className='flex-col lg:flex-row-reverse grid md:grid-cols-1'>
+            <div className='flex-col lg:flex-row-reverse grid md:grid-cols-1 lg:grid-cols-2'>
 
                 <div
-                    className="text-center lg:text-left">
-                    <img className='w-full mt-4' src={image} alt="" />
+                    className="text-center lg:text-left flex items-center justify-center lg:mt-16 md:mt-4 sm:mt-2 mt-2">
+                    <img className='w-3/4 mt-4' src={image} alt="" />
                 </div>
 
-                <div className='mt-4 flex justify-center items-center  '>
+                <div className='mt-4 flex justify-center items-center lg:mb-0 md:mb-20 sm:mb-12 mb-12'>
                     <div className='p-6 border-2 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0'>
                         <h2 className='text-2xl text-center font-bold uppercase'>Login</h2>
 
