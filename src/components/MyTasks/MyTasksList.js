@@ -45,7 +45,7 @@ const MyTasksList = ({ task }) => {
                             <FaTrashAlt className='text-3xl flex justify-end text-red-600 font-bold' title='Delete Task'></FaTrashAlt>
                         </div>
                     </div>
-                    <p className="mb-3 font-normal text-gray-900 ">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                    <p className="mb-3 font-normal text-gray-900 ">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order. Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                     <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
                         <p className='font-normal'>Added By: {userEmail}</p>
                         <p className='font-normal'>Post Date: {taskPostedDate}</p>
