@@ -36,7 +36,7 @@ const MyTasksList = ({ task }) => {
             </div> */}
 
             <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100">
-                <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl " src={taskImage} alt="" />
+                <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
                 <div className="p-4">
                     <div className='flex justify-around items-center gap-x-4 '>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Task: {taskName}</h5>

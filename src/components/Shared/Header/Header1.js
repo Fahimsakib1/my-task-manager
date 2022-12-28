@@ -32,14 +32,14 @@ const Header1 = () => {
 
 
     return (
-        <div>
+        <div className='sticky top-0 z-50'>
             <div className="px-4 py-3 mx-auto  md:px-24 lg:px-8 bg-gray-800 text-white">
 
                 <div className="relative flex items-center justify-between ">
 
                     {/* Large Devices */}
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         aria-label="Company"
                         title="Company"
                         className="inline-flex items-center"
@@ -48,49 +48,18 @@ const Header1 = () => {
                         <span className="ml-1 text-2xl font-bold tracking-wide text-white uppercase">
                             Daily Tasks
                         </span>
-                    </a>
+                    </Link>
+
+                    {
+                        user?.email &&
+                        <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md hidden lg:block transition ease-in-out delay-150 hover:-translate-y-2  duration-300 '>
+                            <h1 className='flex justify-start text-xl text-white'>Hi, {user?.email}</h1>
+                        </div>
+                    }
 
                     <ul className="flex items-center hidden space-x-8 lg:flex">
 
-                        {/* <li>
-                            <Link
-                                href="/"
-                                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400"
-                            >
-                                Add Task
-                            </Link>
-                        </li>
-
-
-                        <li>
-                            <Link
-                                href="/"
-                                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400"
-                            >
-                                My Tasks
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/"
-                                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400"
-                            >
-                                Completed Tasks
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                to="/signup"
-                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-800 focus:shadow-outline focus:outline-none" title="Sign up"
-                            >
-                                Sign up
-                            </Link>
-                        </li> */}
-
-
-
+                        
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
                         <NavLink to='/addTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Add Tasks</NavLink>
                         <NavLink to='/myTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">My Tasks</NavLink>
@@ -101,7 +70,7 @@ const Header1 = () => {
                                 <div>
                                     <Link
                                         onClick={handleLogoutUser}
-                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-500 focus:shadow-outline focus:outline-none" title="Log Out"
+                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white  rounded shadow-md bg-purple-800" title="Log Out"
                                     >
                                         Logout
                                     </Link>
@@ -163,26 +132,27 @@ const Header1 = () => {
                             // Small Devices
                             <div className="absolute top-0 left-0 w-full">
 
-                                <div className="p-5 bg-white border rounded shadow-sm">
+                                <div className="p-5 bg-gray-900 border rounded shadow-sm">
                                     <div className="flex items-center justify-between mb-4">
                                         <div>
-                                            <a
-                                                href="/"
+                                            <Link
+                                                to="/"
                                                 className="inline-flex items-center"
                                             >
                                                 <img className='w-12 h-12 rounded-full' src={logo} alt="" />
-                                                <span className="ml-1 text-xl font-bold tracking-wide text-gray-800 uppercase">
+                                                <span className="ml-1 text-xl font-bold tracking-wide text-white uppercase">
                                                     Daily Tasks
                                                 </span>
-                                            </a>
+                                            </Link>
                                         </div>
+
                                         <div>
                                             <button
                                                 title="Close Menu"
-                                                className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                className="p-2 -mt-2 -mr-2 transition duration-200 rounded bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                 onClick={() => setIsMenuOpen(false)}
                                             >
-                                                <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                                                <svg className="w-5 text-black" viewBox="0 0 24 24">
                                                     <path
                                                         fill="currentColor"
                                                         d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -193,37 +163,46 @@ const Header1 = () => {
                                     </div>
                                     <nav>
                                         <ul className="space-y-4">
+                                            <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
+
+                                            {
+                                                user?.email &&
+                                                <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md lg:hidden block transition ease-in-out delay-150 hover:-translate-y-2  duration-300'>
+                                                    <h1 className='text-center flex justify-start text-xl text-white'>Hi, {user?.email}</h1>
+                                                </div>
+                                            }
+
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/addTasks"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                    className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Add Task
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/myTasks"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                    className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     My Tasks
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/completedTasks"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                    className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Completed Tasks
-                                                </Link>
+                                                </NavLink>
                                             </li>
-                                            
+
                                             {
                                                 user?.email ?
                                                     <div>
                                                         <Link
                                                             onClick={handleLogoutUser}
-                                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-700 focus:shadow-outline focus:outline-none" title="Log Out"
+                                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white  rounded shadow-md bg-purple-800 " title="Log Out"
                                                         >
                                                             Logout
                                                         </Link>

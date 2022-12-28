@@ -12,14 +12,17 @@ const AuthProvider = ({children}) => {
     const providerGoogle = new GoogleAuthProvider();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [loading1, setLoading1] = useState(true);
 
     const createUser = (email, password) => {
-        setLoading(true);
+        // setLoading(true);
+        setLoading1(true);
         return createUserWithEmailAndPassword(auth, email, password); 
     }
 
     const userLogin = (email, password) => {
-        setLoading(true);
+        // setLoading(true);
+        setLoading1(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -38,13 +41,14 @@ const AuthProvider = ({children}) => {
             console.log("Current User From Auth Provider", currentUser);
             setUser(currentUser);
             setLoading(false)
+            setLoading1(false)
         })
         return () => unsubscribe();
     }, []);
 
     
     const fahim = {name: 'Fahim'}
-    const AuthInfo = {fahim, user, loading, setLoading, createUser, userLogin, signOutUser, googleSignIn}
+    const AuthInfo = {fahim, user, loading, setLoading, loading1, setLoading1, createUser, userLogin, signOutUser, googleSignIn}
     
     
     return (

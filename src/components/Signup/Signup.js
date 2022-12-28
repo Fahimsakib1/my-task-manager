@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 
 const Signup = () => {
 
-    const { createUser,  googleSignIn, loading, setLoading } = useContext(AuthContext)
+    const { createUser, googleSignIn, loading, setLoading, loading1, setLoading1 } = useContext(AuthContext)
 
     const [error, setError] = useState('');
 
@@ -24,6 +24,7 @@ const Signup = () => {
 
     //visible the password
     const [visiblePassword, setVisiblePassword] = useState(false);
+
 
     const handleSignup = (data) => {
         console.log(data);
@@ -42,13 +43,30 @@ const Signup = () => {
                     title: 'Oops...',
                     text: 'Sign Up Failed.. Try Again',
                 })
-                setLoading(false)
+                setLoading1(false)
                 setError(error.message)
             })
     }
 
-    const handleSignInByGoogle = () => {
 
+    const handleSignInByGoogle = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log("User Sign in By Google", user);
+                toast.success("Successfully Sign In By Google");
+                navigate('/')
+            })
+
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Sign Up Failed.. Try Again',
+                })
+                setError(error.message)
+                setLoading(false)
+            })
     }
 
 
@@ -62,7 +80,7 @@ const Signup = () => {
                 </div>
 
                 <div className='mt-4 flex justify-center items-center lg:mt-16 md:mt-4 sm:mt-2  mb-20'>
-                    <div className='p-6 border-2 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0'>
+                    <div className='p-6 border-2 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0 bg-gray-100'>
                         <h2 className='text-2xl text-center font-bold uppercase'>Sign Up</h2>
 
                         <form onSubmit={handleSubmit(handleSignup)}>
@@ -130,7 +148,7 @@ const Signup = () => {
 
 
                             <button type='submit' className='w-full py-[10px] font-semibold rounded bg-blue-800 hover:bg-blue-900 text-white mt-4'>
-                                {loading ? <SmallSpinner></SmallSpinner> : 'Sign Up'}
+                                {loading1 ? <SmallSpinner></SmallSpinner> : 'Sign Up'}
                             </button>
 
                         </form>
@@ -141,12 +159,20 @@ const Signup = () => {
 
                         <hr className='my-4'></hr>
 
-                        <div className='mt-2'>
-                            <button onClick={handleSignInByGoogle} className='text-white bg-gray-800 uppercase w-full rounded-lg'>
-                                <div className='flex justify-center items-center py-2'>
-                                    <FcGoogle className='text-2xl mr-2'></FcGoogle>
-                                    <h1>Google Sign In</h1>
-                                </div>
+                        <div className='mt-2' onClick={handleSignInByGoogle}>
+                            <button className='text-white bg-gray-800  w-full rounded-lg'>
+                                {
+                                    loading ?
+                                        <div className='flex justify-center items-center '>
+                                            <SmallSpinner></SmallSpinner>
+                                            <p className='ml-2 py-2'>Processing</p>
+                                        </div>
+                                        :
+                                        <div className='flex justify-center items-center py-2'>
+                                            <FcGoogle className='text-2xl mr-2'></FcGoogle>
+                                            <h1 className='uppercase'>Google Sign In</h1>
+                                        </div>
+                                }
                             </button>
                         </div>
 
