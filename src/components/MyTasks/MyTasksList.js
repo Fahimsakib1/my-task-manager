@@ -1,13 +1,14 @@
 import React from 'react';
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 
 
 
-const MyTasksList = ({ task }) => {
+const MyTasksList = ({ task, handleDeleteTask }) => {
 
-    const { taskName, userEmail, taskImage, taskPostedDate } = task
+    const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription } = task
 
     return (
         <div className=' mx-4 sm:mx-4 md:mx-0'>
@@ -35,19 +36,21 @@ const MyTasksList = ({ task }) => {
                 </div>
             </div> */}
 
-            <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100">
+            <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100 ">
                 <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
                 <div className="p-4">
                     <div className='flex justify-around items-center gap-x-4 '>
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Task: {taskName}</h5>
-                        
+                        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-white bg-gradient-to-r from-violet-900 to-orange-800 px-2 py-1 rounded-lg">Task: {taskName}</h5>
+
                         <div className='flex flex-1 justify-end items-center gap-x-6 '>
-                            <FaRegEdit className='text-3xl text-blue-700 font-bold' title='Edit Task'></FaRegEdit>
-                            <FaTrashAlt className='text-3xl flex justify-end text-red-600 font-bold' title='Delete Task'></FaTrashAlt>
+                            <Link to={`/task/${_id}`}>
+                                <FaRegEdit className='text-3xl text-blue-700 font-bold' title='Edit Task'></FaRegEdit>
+                            </Link>
+                            <FaTrashAlt onClick={() => handleDeleteTask(_id, taskName)} className='text-3xl flex justify-end text-red-600 font-bold' title='Delete Task'></FaTrashAlt>
                         </div>
                     </div>
-                    
-                    <p className="mb-3 font-normal text-gray-900 ">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+
+                    <p className="mb-3 font-normal text-gray-900 ">{taskDescription}</p>
 
                     <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
                         <p className='font-semibold flex flex-1 justify-start'>Added By: {userEmail}</p>

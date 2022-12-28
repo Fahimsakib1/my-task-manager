@@ -52,7 +52,7 @@ const Header1 = () => {
 
                     {
                         user?.email &&
-                        <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md hidden lg:block transition ease-in-out delay-150 hover:-translate-y-2  duration-300 '>
+                        <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md hidden lg:block transition ease-in-out delay-150 hover:-translate-y-2  duration-300 animate-bounce'>
                             <h1 className='flex justify-start text-xl text-white'>Hi, {user?.email}</h1>
                         </div>
                     }
@@ -87,9 +87,9 @@ const Header1 = () => {
 
                                     <Link
                                         to="/signup"
-                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign up"
+                                        className="inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign Up"
                                     >
-                                        Sign up
+                                        Sign Up
                                     </Link>
                                 </div>
                         }
@@ -167,7 +167,7 @@ const Header1 = () => {
 
                                             {
                                                 user?.email &&
-                                                <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md lg:hidden block transition ease-in-out delay-150 hover:-translate-y-2  duration-300'>
+                                                <div className='py-1 bg-gradient-to-r from-violet-900 to-pink-900 px-8 rounded-md lg:hidden block transition ease-in-out delay-150 hover:-translate-y-2  duration-300 animate-pulse'>
                                                     <h1 className='text-center flex justify-start text-xl text-white'>Hi, {user?.email}</h1>
                                                 </div>
                                             }
@@ -219,9 +219,9 @@ const Header1 = () => {
 
                                                         <Link
                                                             to="/signup"
-                                                            className="w-full inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign up"
+                                                            className="w-full inline-flex items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 focus:shadow-outline focus:outline-none" title="Sign Up"
                                                         >
-                                                            Sign up
+                                                            Sign Up
                                                         </Link>
                                                     </div>
                                             }

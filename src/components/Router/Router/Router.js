@@ -6,6 +6,8 @@ import Main from "../../Layout/Main";
 import Login from "../../Login/Login";
 import MyTasks from "../../MyTasks/MyTasks";
 import Signup from "../../Signup/Signup";
+import UpdateTask from "../../UpdateTask/UpdateTask";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
 
             {
                 path: '/myTasks',
-                element: <MyTasks></MyTasks>
+                element: <PrivateRoute><MyTasks></MyTasks></PrivateRoute>
             },
 
             {
@@ -40,6 +42,12 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+
+            {
+                path: '/task/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
+                element: <UpdateTask></UpdateTask>
             }
         ]
     }
