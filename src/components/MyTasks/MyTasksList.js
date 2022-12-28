@@ -1,40 +1,62 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
-
+import { IoMdDoneAll } from 'react-icons/io';
+import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 
 
 
 const MyTasksList = ({ task, handleDeleteTask }) => {
 
-    const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription } = task
+    const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription, isCompleted } = task;
+
+    const { user } = useContext(AuthContext);
+    const { data: tasks = [], isLoading, refetch } = useQuery({
+        queryKey: ['tasks', user?.email],
+        queryFn: () => fetch(`http://localhost:5000/tasks?email=${user?.email}`)
+            .then(res => res.json())
+    })
+
+    if (isLoading) {
+        return <div className="h-32 w-32 border-8 border-dashed rounded-full animate-spin border-blue-700 mx-auto mt-64"></div>
+    }
+    refetch();
+
+
+    const handleCompleteTask = (id, name) => {
+        fetch(`http://localhost:5000/completeTask/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            }
+
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.modifiedCount > 0) {
+                    Swal.fire(
+                        `Congratulations!!`,
+                        'Your Task is Complete',
+                        'success'
+                    )
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Something Went Wrong`,
+                        text: 'Try Again Properly'
+                    })
+                }
+            })
+    }
+
+
+
 
     return (
         <div className=' mx-4 sm:mx-4 md:mx-0'>
-            {/* <div className="bg-gray-800 text-gray-50 my-4">
-                <div className="container grid grid-cols-12 mx-auto bg-gray-900">
-                    <div className="bg-no-repeat bg-cover bg-gray-700 col-span-full lg:col-span-4" >
-                        <img  src={taskImage} className='w-56 h-48 rounded-md' alt="" />
-                    </div>
-                    
-                    <div className="flex flex-col p-6 col-span-full row-span-full lg:col-span-8 lg:p-10">
-                    
-                        <h1 className="text-3xl font-semibold">Task: {taskName}</h1>
-                        <p className="flex-1 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, reprehenderit adipisci tempore voluptas laborum quod.</p>
-
-                        <div className="flex items-center justify-between pt-2">
-                            <div className="flex space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-gray-400">
-                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path>
-                                </svg>
-                                <span className="self-center text-sm">Email: {userEmail}</span>
-                            </div>
-                            <span className="text-xs">{taskPostedDate}</span>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
 
             <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100 ">
                 <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
@@ -57,9 +79,23 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
                         <p className='font-semibold flex flex-1 justify-end mr-4'>Post Date: {taskPostedDate}</p>
                     </div>
 
-                    <button type='submit' className='w-full py-[10px] font-semibold rounded text-white mt-4  bg-gradient-to-r from-purple-900 to-violet-900'>
-                        Completed Task
-                    </button>
+                    {
+                        isCompleted === true ?
+
+                            <button type='submit' className='w-full py-[10px] font-semibold rounded text-white mt-4  bg-gradient-to-r from-green-800 to-green-900'>
+                                <div className='flex justify-center items-center gap-x-2'>
+                                    <IoMdDoneAll className='text-2xl'></IoMdDoneAll>
+                                    <h1>Task Completed</h1>
+                                </div>
+                            </button>
+                            :
+                            <Link to={`/completeTask/${_id}`}>
+                                <button onClick={() => handleCompleteTask(_id, taskName)} type='submit' className='w-full py-[10px] font-semibold rounded text-white mt-4  bg-gradient-to-r from-purple-900 to-violet-900'>
+                                    Complete Task
+                                </button>
+                            </Link>
+
+                    }
 
                 </div>
             </div>

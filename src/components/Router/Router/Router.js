@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddTask from "../../AddTask/AddTask";
 import CompletedTasks from "../../CompletedTasks/CompletedTasks";
+import DisplayCompletedTasks from "../../DisplayCompletedTasks/DisplayCompletedTasks";
 import Home from "../../Home/Home/Home";
 import Main from "../../Layout/Main";
 import Login from "../../Login/Login";
@@ -30,8 +31,9 @@ const router = createBrowserRouter([
             },
 
             {
-                path:'/completedTasks',
-                element: <CompletedTasks></CompletedTasks>
+                path:'/displayCompletedTasks',
+                // loader: () => fetch('http://localhost:5000/displayCompletedTasks'),
+                element: <PrivateRoute><DisplayCompletedTasks></DisplayCompletedTasks></PrivateRoute>
             },
 
             {
@@ -48,6 +50,12 @@ const router = createBrowserRouter([
                 path: '/task/:id',
                 loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
                 element: <UpdateTask></UpdateTask>
+            },
+
+            {
+                path: '/completeTask/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
+                element: <CompletedTasks></CompletedTasks>
             }
         ]
     }

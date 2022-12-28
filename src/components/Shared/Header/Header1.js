@@ -63,7 +63,7 @@ const Header1 = () => {
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
                         <NavLink to='/addTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Add Tasks</NavLink>
                         <NavLink to='/myTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">My Tasks</NavLink>
-                        <NavLink to='/completedTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Completed Tasks</NavLink>
+                        <NavLink to='/displayCompletedTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Completed Tasks</NavLink>
 
                         {
                             user?.email ?
@@ -94,11 +94,9 @@ const Header1 = () => {
                                 </div>
                         }
 
-
-
-
-
                     </ul>
+
+
 
 
 
@@ -190,7 +188,7 @@ const Header1 = () => {
                                             </li>
                                             <li>
                                                 <NavLink
-                                                    to="/completedTasks"
+                                                    to="/displayCompletedTasks"
                                                     className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Completed Tasks

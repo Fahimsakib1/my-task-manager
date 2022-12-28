@@ -76,7 +76,8 @@ const AddTask = () => {
                         userEmail: data.email || 'No Email Added',
                         taskImage: imageData.data.url,
                         taskPostedDate: taskDate,
-                        taskDescription: data.description
+                        taskDescription: data.description,
+                        isCompleted: false
                     }
 
                     fetch('http://localhost:5000/addedTasks', {
