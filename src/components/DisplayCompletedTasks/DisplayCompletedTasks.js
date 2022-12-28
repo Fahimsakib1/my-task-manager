@@ -8,6 +8,8 @@ const DisplayCompletedTasks = () => {
     // const completeTasks = useLoaderData();
     // const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription, isCompleted } = completeTasks
 
+    
+    
     const { data: completeTasks = [], isLoading, refetch } = useQuery({
         queryKey: ['completeTasks'],
         queryFn: () => fetch('http://localhost:5000/displayCompletedTasks')
@@ -17,6 +19,8 @@ const DisplayCompletedTasks = () => {
     if (isLoading) {
         return <div className="h-32 w-32 border-8 border-dashed rounded-full animate-spin border-blue-700 mx-auto mt-64"></div>
     }
+
+    
 
     return (
         <div>

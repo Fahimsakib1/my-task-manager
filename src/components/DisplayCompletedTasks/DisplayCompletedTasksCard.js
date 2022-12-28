@@ -1,18 +1,15 @@
 import React from 'react';
 import { IoMdDoneAll } from 'react-icons/io';
 import {MdDoneOutline} from 'react-icons/md';
-
-
-
-
-
-
-
+import UseTitle from '../Title/UseTitle';
 
 
 
 const DisplayCompletedTasksCard = ({ task }) => {
 
+    
+    UseTitle('Completed Tasks')
+    
     const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription, isCompleted } = task
     return (
         <div>

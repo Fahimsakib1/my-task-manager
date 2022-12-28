@@ -6,10 +6,13 @@ import Swal from 'sweetalert2';
 import './AddTask.css'
 import { useNavigate } from 'react-router-dom';
 import SmallSpinner from '../Spinner/SmallSpinner/SmallSpinner';
+import UseTitle from '../Title/UseTitle';
 
 
 
 const AddTask = () => {
+
+    UseTitle('Add Task');
 
     const { user } = useContext(AuthContext);
     console.log("User From Add Task Page", user);
@@ -98,6 +101,7 @@ const AddTask = () => {
                                 )
                                 setLoading(false);
                                 reset();
+                                navigate('/myTasks')
                             }
                             else {
                                 Swal.fire({
@@ -123,9 +127,7 @@ const AddTask = () => {
 
     }
 
-    // if (loading) {
-    //     return <SmallSpinner></SmallSpinner>
-    // }
+
 
 
 
@@ -142,8 +144,6 @@ const AddTask = () => {
                             <label className="label">
                                 <span className="text-start">Task Name</span>
                             </label>
-
-                            {/* <input name='taskName' type="text" placeholder="Enter Task Name" className="w-full rounded-md focus:ring focus:ring-violet-400 border-gray-700 px-4 py-2 mt-2 text-black" required /> */}
 
                             <input type="text" {...register("name", { required: "Task Name is Required" })}
                                 placeholder="Enter Task Name" className="w-full rounded-md focus:ring focus:ring-violet-400 border-gray-700 px-4 py-2 mt-2 text-black " />
@@ -166,26 +166,20 @@ const AddTask = () => {
                             {/* {errors.email && <p className='text-red-600'>{errors.email?.message}</p>} */}
                         </div>
 
-                        {/* <label className="block mb-1 text-md  text-white" >Upload Image</label>
-                        <input  type="file" {...register("photo", { required: "Photo is Required" })}
-                            placeholder="Upload Product Photo" className="block w-full text-lg text-gray-400 border border-gray-600 rounded-lg cursor-pointer bg-gray-700 focus:outline-none placeholder-gray-400 mb-4" required />
-
-                        {errors.photo && <p className='text-red-600'>{errors.photo?.message}</p>} */}
-
-                        <label className="block text-sm font-medium mb-2">Task Description</label>
-                        <div>
-                            <textarea  {...register("description", { required: "Task Description is Required" })} className="textarea  border-black w-full h-16  text-black rounded-lg px-4 py-2" placeholder="Add Task Description"></textarea>
-                        </div>
-                        {errors.description && <p className='text-red-600'>{errors.description?.message}</p>}
-
-
                         <label className="block text-sm font-medium mb-2">Upload Task Image</label>
                         <div className="w-1/2 sm:w-1/2 md:w-full space-y-1 text-gray-100 ">
                             <div className="w-1/2 sm:w-1/2 md:w-full">
-                                <input type="file"  {...register("photo", { required: "Photo is Required" })} className="px-3 sm:px-3 md:px-8 py-4 border-2 border-dashed rounded-md border-gray-700 text-gray-400 bg-gray-800" required />
+                                <input type="file"  {...register("photo", { required: "Photo is Required" })} className="px-3 sm:px-3 md:px-8 py-4 border-2 border-dashed rounded-md border-gray-700 text-gray-400 bg-gray-800 lg:ml-44 md:ml-20  ml-0" required />
                             </div>
                         </div>
                         {errors.photo && <p className='text-red-600'>{errors.photo?.message}</p>}
+
+
+                        <label className="block text-sm font-medium mb-2">Task Description</label>
+                        <div>
+                            <input type='text'  {...register("description", { required: "Task Description is Required" })} className="textarea  border-black w-full h-16  text-black rounded-lg px-4 py-2" placeholder="Add Task Description"></input>
+                        </div>
+                        {errors.description && <p className='text-red-600'>{errors.description?.message}</p>}
 
 
                         <button type="submit" className="w-full py-[10px] font-semibold rounded text-white   bg-gradient-to-r from-violet-900 to-pink-900  addTaskButton">

@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import UseTitle from '../Title/UseTitle';
 
 
 
 
 const UpdateTask = () => {
 
+    UseTitle('Update Task');
+    
     const task = useLoaderData();
     const { taskName, taskDescription, _id, userEmail, taskImage } = task
 

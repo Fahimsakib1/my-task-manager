@@ -9,10 +9,13 @@ import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import SmallSpinner from '../Spinner/SmallSpinner/SmallSpinner';
 import Swal from 'sweetalert2';
+import UseTitle from '../Title/UseTitle';
 
 
 const Signup = () => {
 
+    UseTitle('Signup');
+    
     const { createUser, googleSignIn, loading, setLoading, loading1, setLoading1 } = useContext(AuthContext)
 
     const [error, setError] = useState('');

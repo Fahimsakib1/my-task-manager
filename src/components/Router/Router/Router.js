@@ -8,6 +8,7 @@ import Login from "../../Login/Login";
 import MyTasks from "../../MyTasks/MyTasks";
 import Signup from "../../Signup/Signup";
 import UpdateTask from "../../UpdateTask/UpdateTask";
+import ViewComments from "../../ViewComments/ViewComments";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -32,7 +33,6 @@ const router = createBrowserRouter([
 
             {
                 path:'/displayCompletedTasks',
-                // loader: () => fetch('http://localhost:5000/displayCompletedTasks'),
                 element: <PrivateRoute><DisplayCompletedTasks></DisplayCompletedTasks></PrivateRoute>
             },
 
@@ -56,6 +56,12 @@ const router = createBrowserRouter([
                 path: '/completeTask/:id',
                 loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
                 element: <CompletedTasks></CompletedTasks>
+            },
+
+            {
+                path: '/comments/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/comments/${params.id}`),
+                element: <ViewComments></ViewComments>
             }
         ]
     }

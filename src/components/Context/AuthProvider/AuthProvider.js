@@ -46,9 +46,49 @@ const AuthProvider = ({children}) => {
         return () => unsubscribe();
     }, []);
 
+
+
+
+    //Theme Toggle Code Starts
+    const [theme, setTheme] = useState("Light");
+
+    useEffect( () => {
+        if(theme === "dark"){
+            document.documentElement.classList.add("dark")
+        }
+        else{
+            document.documentElement.classList.remove("dark")
+        }
+
+        //get the theme value from Local Storage
+        const storedTheme = localStorage.getItem('BestBikeDefaultTheme');
+        setTheme(storedTheme);
+
+    }, [theme])
+
+    const ThemeChange = () => {
+        setTheme(theme === "dark" ? "Light" : "dark");
+
+        //set the theme value to Local Storage
+        //localStorage.setItem('MyTaskManagerTheme', theme === "dark" ? "Light" : "dark" )
+        
+    }
+
+    const handleThemeSwitch = () => {
+        ThemeChange()
+    }
+    // Theme Toggle Code Ends
+
+
+
+
+
+
+
+
+
     
-    const fahim = {name: 'Fahim'}
-    const AuthInfo = {fahim, user, loading, setLoading, loading1, setLoading1, createUser, userLogin, signOutUser, googleSignIn}
+    const AuthInfo = {user, loading, setLoading, loading1, setLoading1, createUser, userLogin, signOutUser, googleSignIn, theme, ThemeChange, handleThemeSwitch}
     
     
     return (

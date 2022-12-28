@@ -4,13 +4,13 @@ import logo from '../../../images/MainLogo-no-bg.png';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Header1.css';
 import Swal from 'sweetalert2';
-
+import { BsSun, BsMoon } from 'react-icons/bs';
 
 
 const Header1 = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser, theme, ThemeChange } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -29,6 +29,10 @@ const Header1 = () => {
             })
     }
 
+    // const handleThemeSwitch = () => {
+    //     ThemeChange();
+    // }
+
 
 
     return (
@@ -45,7 +49,7 @@ const Header1 = () => {
                         className="inline-flex items-center"
                     >
                         <img className='w-16 h-16 rounded-full' src={logo} alt="" />
-                        <span className="ml-1 text-2xl font-bold tracking-wide text-white uppercase">
+                        <span className="ml-1 text-2xl font-semibold tracking-wide text-white uppercase hover:text-amber-500 transition ease-in delay-150   hover:scale-105 duration-300">
                             Daily Tasks
                         </span>
                     </Link>
@@ -59,7 +63,7 @@ const Header1 = () => {
 
                     <ul className="flex items-center hidden space-x-8 lg:flex">
 
-                        
+
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
                         <NavLink to='/addTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Add Tasks</NavLink>
                         <NavLink to='/myTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">My Tasks</NavLink>
@@ -93,6 +97,13 @@ const Header1 = () => {
                                     </Link>
                                 </div>
                         }
+
+                        {/* {
+                            theme === 'dark' ?
+                                <BsMoon onClick={handleThemeSwitch} className=" my-auto ml-8 mr-12 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 " title='Click For Light Mode' ></BsMoon>
+                                :
+                                <BsSun onClick={handleThemeSwitch} className=" my-auto ml-3 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 mr-8" title='Click For Dark Mode'></BsSun>
+                        } */}
 
                     </ul>
 
