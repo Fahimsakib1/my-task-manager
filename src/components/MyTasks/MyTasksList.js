@@ -18,8 +18,12 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
 
     UseTitle('Task List');
 
+    const [open, setOpen] = useState(false);
+    const [allComments, setAllComments] = useState([]);
+
     const [loading, setLoading] = useState(false);
     const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription, isCompleted } = task;
+
 
     const { user } = useContext(AuthContext);
     const { data: tasks = [], isLoading, refetch } = useQuery({
@@ -27,6 +31,48 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
         queryFn: () => fetch(`https://task-manager-server-silk.vercel.app/tasks?email=${user?.email}`)
             .then(res => res.json())
     })
+
+
+    const displayHiddenSection = (id, name) => {
+        setOpen(!open);
+        console.log("Task Name", name);
+        console.log("Task ID", id);
+        fetch(`https://task-manager-server-silk.vercel.app/comments/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log("Fetched data ", data);
+                setAllComments(data);
+            })
+    }
+
+
+    //Delete Comment 
+    const handleDeleteComment = (id) => {
+        console.log("Comment ID:", id);
+        const agree = window.confirm('Are You sure you want to delete this Comment');
+        if (agree) {
+            fetch(`https://task-manager-server-silk.vercel.app/deleteComment/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Comment deleted successfully');
+                        setOpen(false)
+                    }
+                    else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops... Something Went Wrong',
+                            text: 'Can not Delete The Comment'
+                        })
+                    }
+                })
+        }
+
+    }
+
+
 
     if (isLoading) {
         return <div className="h-32 w-32 border-8 border-dashed rounded-full animate-spin border-blue-700 mx-auto mt-64"></div>
@@ -121,7 +167,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
             <div className="flex flex-col dark:border dark:border-amber-700 rounded-lg md:flex-row w-full sm:w-full md:w-full lg:w-3/4   mb-6 mx-auto shadow-2xl bg-gray-100 md:px-4 px-0 dark:bg-gray-800 ">
                 <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
                 <div className="p-4">
-                    <div className='flex justify-around items-center gap-x-4 '>
+                    <div className='flex justify-around items-center gap-x-6 '>
                         {
                             isCompleted ?
 
@@ -139,12 +185,8 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
                         </div>
                     </div>
 
-                    <p className="mb-3 font-normal text-gray-900 dark:text-white">{taskDescription}</p>
-
-                    <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
-                        <p className='font-semibold flex flex-1 justify-start'>Added By: {userEmail}</p>
-                        <p className='font-semibold flex flex-1 justify-end mr-4'>Post Date: {taskPostedDate}</p>
-                    </div>
+                    <p className='font-semibold text-xs mb-1 px-1'>Post Date: {taskPostedDate}</p>
+                    <p className="font-normal text-gray-900 dark:text-white">{taskDescription}</p>
 
                     {
                         isCompleted &&
@@ -169,12 +211,58 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
                                 </button>
                             </form>
 
-                            <Link to={`/comments/${_id}`}>
+                            {/* <Link to={`/comments/${_id}`}>
                                 <div className='w-full md:w-1/2 mx-auto bg-gradient-to-r from-violet-900 to-orange-800 py-2 text-white rounded-lg flex justify-center items-center gap-x-2 mt-3'>
                                     <FaRegCommentDots className='text-xl mt-1'></FaRegCommentDots>
                                     <h1 className='text-md'>See All Comments</h1>
                                 </div>
-                            </Link>
+                            </Link> */}
+
+                            {
+                                open ?
+                                    <div onClick={() => displayHiddenSection(_id, taskName)} className='w-full md:w-1/2 mx-auto bg-gradient-to-r from-violet-900 to-orange-900 py-2 text-white rounded-lg flex justify-center items-center gap-x-2 mt-3 cursor-pointer mb-2'>
+                                        <FaRegCommentDots className='text-xl mt-1'></FaRegCommentDots>
+                                        <h1 className='text-md'>Hide Comments</h1>
+                                    </div>
+                                    :
+                                    <div onClick={() => displayHiddenSection(_id, taskName)} className='w-full md:w-1/2 mx-auto bg-gradient-to-r from-violet-900 to-orange-900 py-2 text-white rounded-lg flex justify-center items-center gap-x-2 mt-3 cursor-pointer mb-2'>
+                                        <FaRegCommentDots className='text-xl mt-1'></FaRegCommentDots>
+                                        <h1 className='text-md'>See All Comments</h1>
+                                        {/* <h1 className='text-md'>See All Comments <span className='px-3 py-1 rounded-full bg-white text-black ml-8'>{allComments.length}</span></h1> */}
+                                    </div>
+                            }
+
+                            {
+                                open &&
+                                <div>
+
+                                    {
+                                        allComments.length ?
+                                            <div>
+                                                {
+                                                    allComments.map(singleComment =>
+                                                        <div key={singleComment._id} className=''>
+                                                            <p className="font-semibold text-xs mb-2 dark:text-amber-600">Date: {singleComment.commentDate}</p>
+                                                            <div className='flex justify-between items-center gap-x-4'>
+                                                                <div>
+                                                                    <p className=" rounded-3xl py-2 px-4 text-md bg-white text-black shadow-lg mb-4 dark:bg-gray-700 dark:text-white"> {singleComment.comment}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <FaTrashAlt onClick={() => handleDeleteComment(singleComment._id)} className='text-2xl text-red-600 font-bold -mt-3' title='Delete Comment'></FaTrashAlt>
+                                                                </div>
+                                                            </div>
+                                                        </div>)
+                                                }
+                                            </div>
+
+                                            :
+
+                                            <div>
+                                                <p className='text-xl text-center text-gray-600 font-semibold mt-2'>No Comment Added</p>
+                                            </div>
+                                    }
+                                </div>
+                            }
 
                         </div>
                     }

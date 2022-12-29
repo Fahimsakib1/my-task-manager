@@ -12,7 +12,7 @@ import UseTitle from '../Title/UseTitle';
 const UpdateTask = () => {
 
     UseTitle('Update Task');
-    
+
     const task = useLoaderData();
     const { taskName, taskDescription, _id, userEmail, taskImage } = task
 
@@ -120,6 +120,7 @@ const UpdateTask = () => {
                     )
                     setLoading(false);
                     reset();
+                    navigate('/myTasks')
                 }
                 else {
                     Swal.fire({
@@ -167,11 +168,15 @@ const UpdateTask = () => {
                         {errors.description && <p className='text-red-600'>{errors.description?.message}</p>}
 
 
-                        <label className="block text-sm font-medium mb-2">Upload Task Image</label>
+                        {/* <label className="block text-sm font-medium mb-2">Upload Task Image</label>
                         <div className="w-1/2 sm:w-1/2 md:w-full space-y-1 text-gray-100 ">
                             <div className="w-1/2 sm:w-1/2 md:w-full">
                                 <input type="file"  {...register("photo", { required: "Photo is Required" })} className="px-3 sm:px-3 md:px-8 py-4 border-2 border-dashed rounded-md border-gray-700 text-gray-400 bg-gray-800" />
                             </div>
+                        </div> */}
+                        <label className="block text-sm font-medium mb-2">Upload Task Image</label>
+                        <div className=" text-gray-100 ">
+                            <input type="file"  {...register("photo", { required: "Photo is Required" })} className="py-4 border-2 border-dashed rounded-md border-gray-600 text-gray-300 bg-gray-800" />
                         </div>
                         {errors.photo && <p className='text-red-600'>{errors.photo?.message}</p>}
 
