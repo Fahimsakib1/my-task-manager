@@ -136,7 +136,7 @@ const AddTask = () => {
             <section className=" px-2 py-6 text-gray-100 mt-3">
                 <div className="w-full sm:w-full md:w-3/4 lg:w-1/2 mx-auto px-4 py-8 sm:px-4 md:px-8  rounded-2xl bg-gray-900">
 
-                    <span className="block mb-2 text-violet-400 lg:text-4xl md:text-4xl sm:text-3xl text-3xl text-center -mt-6">Task Manager</span>
+                    <span className="block mb-2 text-violet-400 lg:text-4xl md:text-4xl sm:text-2xl text-2xl text-center -mt-6">Daily Task Manager</span>
 
                     <form onSubmit={handleSubmit(handleAddTasks)} className="self-stretch space-y-3 ng-untouched ng-pristine ng-valid mt-4">
 
