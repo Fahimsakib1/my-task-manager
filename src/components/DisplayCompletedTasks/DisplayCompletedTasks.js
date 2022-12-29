@@ -13,7 +13,7 @@ const DisplayCompletedTasks = () => {
 
     const { data: completeTasks = [], isLoading, refetch } = useQuery({
         queryKey: ['completeTasks', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/displayCompletedTasks?email=${user.email}`)
+        queryFn: () => fetch(`https://task-manager-server-silk.vercel.app/displayCompletedTasks?email=${user.email}`)
             .then(res => res.json())
     })
 
@@ -25,7 +25,7 @@ const DisplayCompletedTasks = () => {
 
     return (
         <div>
-            <h1 className='mt-4 text-3xl font-bold text-center text-green-700'>All Completed Tasks</h1>
+            <h1 className='mt-8 text-3xl font-bold text-center text-green-700'>All Completed Tasks</h1>
 
             {/* <section className="py-6 sm:py-12">
                 <div className="container p-6 mx-auto space-y-8">

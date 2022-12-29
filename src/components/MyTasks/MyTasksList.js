@@ -24,7 +24,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
     const { user } = useContext(AuthContext);
     const { data: tasks = [], isLoading, refetch } = useQuery({
         queryKey: ['tasks', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/tasks?email=${user?.email}`)
+        queryFn: () => fetch(`https://task-manager-server-silk.vercel.app/tasks?email=${user?.email}`)
             .then(res => res.json())
     })
 
@@ -47,7 +47,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
 
 
     const handleCompleteTask = (id, name) => {
-        fetch(`http://localhost:5000/completeTask/${id}`, {
+        fetch(`https://task-manager-server-silk.vercel.app/completeTask/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -86,7 +86,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
             userEmail: userEmail
         }
 
-        fetch('http://localhost:5000/addComment', {
+        fetch('https://task-manager-server-silk.vercel.app/addComment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -118,7 +118,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
     return (
         <div className=' mx-4 sm:mx-4 md:mx-0'>
 
-            <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-full lg:w-3/4   mb-4 mx-auto shadow-2xl bg-gray-100 md:px-4 px-0">
+            <div className="flex flex-col dark:border dark:border-amber-700 rounded-lg md:flex-row w-full sm:w-full md:w-full lg:w-3/4   mb-6 mx-auto shadow-2xl bg-gray-100 md:px-4 px-0 dark:bg-gray-800 ">
                 <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
                 <div className="p-4">
                     <div className='flex justify-around items-center gap-x-4 '>
@@ -139,7 +139,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
                         </div>
                     </div>
 
-                    <p className="mb-3 font-normal text-gray-900 ">{taskDescription}</p>
+                    <p className="mb-3 font-normal text-gray-900 dark:text-white">{taskDescription}</p>
 
                     <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
                         <p className='font-semibold flex flex-1 justify-start'>Added By: {userEmail}</p>

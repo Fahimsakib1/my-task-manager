@@ -66,7 +66,7 @@ const UpdateTask = () => {
                     //     taskImage: imageData.data.url || taskImage,
                     // }
 
-                    // fetch(`http://localhost:5000/task/${_id}`, {
+                    // fetch(`https://task-manager-server-silk.vercel.app/task/${_id}`, {
                     //     method: 'PUT',
                     //     headers: {
                     //         'content-type': 'application/json',
@@ -103,7 +103,7 @@ const UpdateTask = () => {
             taskImage: newUpdatedImage || taskImage,
         }
 
-        fetch(`http://localhost:5000/task/${_id}`, {
+        fetch(`https://task-manager-server-silk.vercel.app/task/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -140,8 +140,8 @@ const UpdateTask = () => {
 
     return (
         <div>
-            <section className=" px-2 py-6 text-gray-100 mt-3">
-                <div className="w-full sm:w-full md:w-3/4 lg:w-1/2 mx-auto px-4 py-8 sm:px-4 md:px-8  rounded-2xl bg-gray-900">
+            <section className=" px-2 py-6 text-gray-100 mt-8">
+                <div className="w-full sm:w-full md:w-3/4 lg:w-1/2 mx-auto px-4 py-8 sm:px-4 md:px-8  rounded-2xl bg-gray-800 dark:bg-gray-800">
 
                     <span className="block mb-2 text-violet-400 lg:text-4xl md:text-4xl sm:text-3xl text-3xl text-center -mt-6">Update Task</span>
 

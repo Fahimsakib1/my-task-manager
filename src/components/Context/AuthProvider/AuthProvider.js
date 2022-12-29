@@ -61,7 +61,7 @@ const AuthProvider = ({children}) => {
         }
 
         //get the theme value from Local Storage
-        const storedTheme = localStorage.getItem('BestBikeDefaultTheme');
+        const storedTheme = localStorage.getItem('MyTaskManagerTheme');
         setTheme(storedTheme);
 
     }, [theme])
@@ -70,7 +70,7 @@ const AuthProvider = ({children}) => {
         setTheme(theme === "dark" ? "Light" : "dark");
 
         //set the theme value to Local Storage
-        //localStorage.setItem('MyTaskManagerTheme', theme === "dark" ? "Light" : "dark" )
+        localStorage.setItem('MyTaskManagerTheme', theme === "dark" ? "Light" : "dark" )
         
     }
 

@@ -83,7 +83,7 @@ const Signup = () => {
                 </div>
 
                 <div className='mt-4 flex justify-center items-center lg:mt-16 md:mt-4 sm:mt-2  mb-20'>
-                    <div className='p-6 border-2 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0 bg-gray-100'>
+                    <div className='p-6 border rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0 bg-gray-100 dark:bg-gray-900'>
                         <h2 className='text-2xl text-center font-bold uppercase'>Sign Up</h2>
 
                         <form onSubmit={handleSubmit(handleSignup)}>
@@ -150,7 +150,7 @@ const Signup = () => {
                             }
 
 
-                            <button type='submit' className='w-full py-[10px] font-semibold rounded bg-blue-800 hover:bg-blue-900 text-white mt-4'>
+                            <button type='submit' className='w-full py-[10px] font-semibold rounded bg-blue-800 hover:bg-blue-900 text-white mt-4 dark:bg-blue-900'>
                                 {loading1 ? <SmallSpinner></SmallSpinner> : 'Sign Up'}
                             </button>
 
@@ -163,7 +163,7 @@ const Signup = () => {
                         <hr className='my-4'></hr>
 
                         <div className='mt-2' onClick={handleSignInByGoogle}>
-                            <button className='text-white bg-gray-800  w-full rounded-lg'>
+                            <button className='text-white bg-gray-800 dark:bg-black dark:border dark:border-green-700  w-full rounded-lg'>
                                 {
                                     loading ?
                                         <div className='flex justify-center items-center '>

@@ -50,7 +50,7 @@ const Login = () => {
                 setLoading1(false)
                 setLoginError(error.message)
             })
-    }
+    } 
 
     const handleLogInByGoogle = () => {
         googleSignIn()
@@ -83,7 +83,7 @@ const Login = () => {
                 </div>
 
                 <div className='mt-4 flex justify-center items-center lg:mb-0 md:mb-20 sm:mb-12 mb-12 '>
-                    <div className='p-6 border-2 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0 bg-gray-100'>
+                    <div className='p-6 dark:border dark:border-amber-700 rounded-xl  w-full max-w-md shadow-2xl  sm:w-3/4  lg:w-full md:w-full  mx-2 sm:mx-2 md:mx-2 lg:mx-0 bg-gray-100 dark:bg-gray-800'>
                         <h2 className='text-2xl text-center font-bold uppercase'>Login</h2>
 
                         <form onSubmit={handleSubmit(handleLogin)}>
@@ -138,7 +138,7 @@ const Login = () => {
                             }
 
 
-                            <button type='submit' className='w-full py-[10px] font-semibold rounded bg-violet-800 hover:bg-violet-800 text-white mt-4'>
+                            <button type='submit' className='w-full py-[10px] font-semibold rounded bg-violet-800 hover:bg-violet-800 text-white mt-4 dark:bg-violet-900'>
                                 {loading1 ? <SmallSpinner></SmallSpinner> : 'Login'}
                             </button>
 
@@ -151,7 +151,7 @@ const Login = () => {
                         <hr className='my-4'></hr>
 
                         <div className='mt-2' onClick={handleLogInByGoogle}>
-                            <button className='text-white bg-gray-800  w-full rounded-lg'>
+                            <button className='text-white bg-gray-800 dark:bg-black dark:border dark:border-green-700  w-full rounded-lg'>
                                 {
                                     loading ?
                                         <div className='flex justify-center items-center '>

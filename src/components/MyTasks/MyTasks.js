@@ -15,7 +15,7 @@ const MyTasks = () => {
 
     const { data: tasks = [], isLoading, refetch } = useQuery({
         queryKey: ['tasks', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/tasks?email=${user?.email}`)
+        queryFn: () => fetch(`https://task-manager-server-silk.vercel.app/tasks?email=${user?.email}`)
             .then(res => res.json())
     })
 
@@ -28,7 +28,7 @@ const MyTasks = () => {
         const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
         console.log(agree)
         if (agree) {
-            fetch(`http://localhost:5000/deleteTask/${id}`, {
+            fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

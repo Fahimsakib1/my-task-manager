@@ -48,19 +48,19 @@ const router = createBrowserRouter([
 
             {
                 path: '/task/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
+                loader: ({params}) => fetch(`https://task-manager-server-silk.vercel.app/task/${params.id}`),
                 element: <UpdateTask></UpdateTask>
             },
 
             {
                 path: '/completeTask/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`),
+                loader: ({params}) => fetch(`https://task-manager-server-silk.vercel.app/task/${params.id}`),
                 element: <CompletedTasks></CompletedTasks>
             },
 
             {
                 path: '/comments/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/comments/${params.id}`),
+                loader: ({params}) => fetch(`https://task-manager-server-silk.vercel.app/comments/${params.id}`),
                 element: <ViewComments></ViewComments>
             }
         ]

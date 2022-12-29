@@ -17,7 +17,7 @@ const CompletedTasks = () => {
 
 
     const handleTaskNotComplete = (id, name) => {
-        fetch(`http://localhost:5000/notCompleteTask/${id}`, {
+        fetch(`https://task-manager-server-silk.vercel.app/notCompleteTask/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -46,7 +46,7 @@ const CompletedTasks = () => {
         const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
         console.log(agree)
         if (agree) {
-            fetch(`http://localhost:5000/deleteTask/${id}`, {
+            fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -86,7 +86,7 @@ const CompletedTasks = () => {
             <h1 className='text-center mt-4 mb-8 text-4xl font-bold text-blue-700'> Completed Tasks</h1>
 
             <div className=' mx-4 sm:mx-4 md:mx-0'>
-                <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100 ">
+                <div className="flex flex-col  border rounded-lg md:flex-row w-full sm:w-full md:w-3/4 lg:w-1/2   mb-4 mx-auto shadow-2xl bg-gray-100 dark:bg-gray-800">
                     <img className="object-cover w-full h-64 md:h-auto md:w-56 p-2 rounded-2xl transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300" src={taskImage} alt="" />
                     <div className="p-4">
                         <div className='flex justify-around items-center gap-x-4 '>
@@ -98,11 +98,11 @@ const CompletedTasks = () => {
                                     <FaRegEdit className='text-3xl text-blue-700 font-bold' title='Edit Task'></FaRegEdit>
                                 </Link> */}
 
-                                <FaTrashAlt onClick={() => handleDeleteTask(_id, taskName)} className='text-3xl flex justify-end text-red-600 font-bold' title='Delete Task'></FaTrashAlt>
+                                <FaTrashAlt onClick={() => handleDeleteTask(_id, taskName)} className='text-3xl flex justify-end text-red-600  font-bold' title='Delete Task'></FaTrashAlt>
                             </div>
                         </div>
 
-                        <p className="mb-3 font-normal text-gray-900 ">{taskDescription}</p>
+                        <p className="mb-3 font-normal text-gray-900 dark:text-white">{taskDescription}</p>
 
                         <div className='flex justify-around items-center md:flex-row sm:flex-col flex-col'>
                             <p className='font-semibold flex flex-1 justify-start'>Added By: {userEmail}</p>

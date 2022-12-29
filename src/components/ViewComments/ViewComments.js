@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import UseTitle from '../Title/UseTitle';
 
 const ViewComments = () => {
 
     const comments = useLoaderData();
     console.log(comments);
+    
+    UseTitle('Comments')
+    
     return (
         <div>
             {/* <h1 className='text-4xl text-center mt-4'>All Comments: {comments.length}</h1> */}
@@ -19,7 +23,7 @@ const ViewComments = () => {
                                 comments.map(comment => <li key={comment._id}>
 
                                     <article>
-                                        <div className=" px-4 py-2 rounded-xl hover:bg-gray-800 hover:text-white my-4 bg-gray-100 w-full sm:w-full md:w-3/4 lg:w-1/2 mx-auto flex justify-around items-center gap-x-8 shadow-2xl md:flex-row flex-col transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300 hover:my-4">
+                                        <div className=" px-4 py-2 rounded-xl  my-4 bg-gray-100 dark:bg-gray-800 w-full sm:w-full md:w-3/4 lg:w-1/2 mx-auto flex justify-around items-center gap-x-8 shadow-2xl md:flex-row flex-col transition ease-in-out delay-150 hover:translate-y-1  hover:scale-105 duration-300 hover:my-4">
                                             <div>
                                                 <img alt="" className="w-full h-auto md:w-36 md:h-28 rounded-md" src={comment.taskImage} />
                                             </div>

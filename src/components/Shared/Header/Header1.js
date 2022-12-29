@@ -29,15 +29,15 @@ const Header1 = () => {
             })
     }
 
-    // const handleThemeSwitch = () => {
-    //     ThemeChange();
-    // }
+    const handleThemeSwitch = () => {
+        ThemeChange();
+    }
 
 
 
     return (
         <div className='sticky top-0 z-50'>
-            <div className="px-4 py-3 mx-auto  md:px-24 lg:px-8 bg-gray-800 text-white">
+            <div className="px-4 py-3 mx-auto  md:px-24 lg:px-8 bg-gray-900 text-white shadow-2xl">
 
                 <div className="relative flex items-center justify-between ">
 
@@ -49,7 +49,7 @@ const Header1 = () => {
                         className="inline-flex items-center"
                     >
                         <img className='w-16 h-16 rounded-full' src={logo} alt="" />
-                        <span className="ml-1 text-2xl font-semibold tracking-wide text-white uppercase hover:text-amber-500 transition ease-in delay-150   hover:scale-105 duration-300">
+                        <span className="ml-1 text-2xl font-semibold tracking-wide text-white  uppercase hover:text-amber-500 transition ease-in delay-150   hover:scale-105 duration-300">
                             Daily Tasks
                         </span>
                     </Link>
@@ -65,6 +65,7 @@ const Header1 = () => {
 
 
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : undefined}></NavLink>
+                        <NavLink to='/' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Home</NavLink>
                         <NavLink to='/addTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Add Tasks</NavLink>
                         <NavLink to='/myTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">My Tasks</NavLink>
                         <NavLink to='/displayCompletedTasks' className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400 hover:text-orange-400">Completed Tasks</NavLink>
@@ -98,12 +99,12 @@ const Header1 = () => {
                                 </div>
                         }
 
-                        {/* {
+                        {
                             theme === 'dark' ?
                                 <BsMoon onClick={handleThemeSwitch} className=" my-auto ml-8 mr-12 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 " title='Click For Light Mode' ></BsMoon>
                                 :
                                 <BsSun onClick={handleThemeSwitch} className=" my-auto ml-3 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 mr-8" title='Click For Dark Mode'></BsSun>
-                        } */}
+                        }
 
                     </ul>
 
@@ -183,6 +184,16 @@ const Header1 = () => {
 
                                             <li>
                                                 <NavLink
+                                                    to="/"
+                                                    className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                >
+                                                    Home
+                                                </NavLink>
+                                            </li>
+
+
+                                            <li>
+                                                <NavLink
                                                     to="/addTasks"
                                                     className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
@@ -233,6 +244,13 @@ const Header1 = () => {
                                                             Sign Up
                                                         </Link>
                                                     </div>
+                                            }
+
+                                            {
+                                                theme === 'dark' ?
+                                                    <BsMoon onClick={handleThemeSwitch} className=" my-auto ml-8 mr-12 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 " title='Click For Light Mode' ></BsMoon>
+                                                    :
+                                                    <BsSun onClick={handleThemeSwitch} className=" my-auto ml-3 sm:mt-3 md:mt-3 lg:mt-2 mt-2 text-3xl mb-4 sm:mb-4 md:mb-4 lg:mb-0 mr-8" title='Click For Dark Mode'></BsSun>
                                             }
                                         </ul>
                                     </nav>
