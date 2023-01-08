@@ -20,6 +20,7 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
 
     const [open, setOpen] = useState(false);
     const [allComments, setAllComments] = useState([]);
+    const [showDeleteIcon, setShowDeleteIcon] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const { taskName, userEmail, taskImage, taskPostedDate, _id, taskDescription, isCompleted } = task;
@@ -47,30 +48,56 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
 
 
     //Delete Comment 
-    const handleDeleteComment = (id) => {
-        console.log("Comment ID:", id);
-        const agree = window.confirm('Are You sure you want to delete this Comment');
-        if (agree) {
-            fetch(`https://task-manager-server-silk.vercel.app/deleteComment/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        toast.success('Comment deleted successfully');
-                        setOpen(false)
-                    }
-                    else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops... Something Went Wrong',
-                            text: 'Can not Delete The Comment'
-                        })
-                    }
-                })
-        }
+    // const handleDeleteComment = (id) => {
+    //     console.log("Comment ID:", id);
+    //     const agree = window.confirm('Are You sure you want to delete this Comment');
+    //     if (agree) {
+    //         fetch(`https://task-manager-server-silk.vercel.app/deleteComment/${id}`, {
+    //             method: 'DELETE',
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data.deletedCount > 0) {
+    //                     toast.success('Comment deleted successfully');
+    //                     setOpen(false)
+    //                 }
+    //                 else {
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Oops... Something Went Wrong',
+    //                         text: 'Can not Delete The Comment'
+    //                     })
+    //                 }
+    //             })
+    //     }
 
+    // }
+
+
+
+
+    //Delete Commont
+    const handleDeleteComment = (id) => {
+        fetch(`https://task-manager-server-silk.vercel.app/deleteComment/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success('Comment deleted successfully');
+                    setOpen(false)
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops... Something Went Wrong',
+                        text: 'Can not Delete The Comment'
+                    })
+                }
+            })
     }
+
+
 
 
 
@@ -249,7 +276,9 @@ const MyTasksList = ({ task, handleDeleteTask }) => {
                                                                 </div>
                                                                 <div>
                                                                     <FaTrashAlt onClick={() => handleDeleteComment(singleComment._id)} className='text-2xl text-red-600 font-bold -mt-3' title='Delete Comment'></FaTrashAlt>
+                                                                    {/* <svg onClick={() => setShowDeleteIcon(!showDeleteIcon)} className="w-6 h-6 -mt-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg> */}
                                                                 </div>
+
                                                             </div>
                                                         </div>)
                                                 }

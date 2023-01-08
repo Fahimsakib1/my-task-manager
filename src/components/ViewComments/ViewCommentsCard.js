@@ -20,6 +20,7 @@ const ViewCommentsCard = ({ singleComment }) => {
                             <time className="font-semibold">Date: {commentDate}</time>
                             <p className=" text-white rounded-3xl py-2 px-4 text-lg bg-gradient-to-r from-violet-900 to-red-900 mt-2"> {comment}</p>
                         </div>
+                        
                     </div>
                 </article>
 

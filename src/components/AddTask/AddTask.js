@@ -112,8 +112,6 @@ const AddTask = () => {
                                 setLoading(false);
                             }
                         })
-
-
                 }
                 else {
                     console.log("Error");

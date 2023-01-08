@@ -24,32 +24,60 @@ const MyTasks = () => {
     }
 
 
+    // const handleDeleteTask = (id, name) => {
+    //     const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
+    //     console.log(agree)
+    //     if (agree) {
+    //         fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
+    //             method: 'DELETE',
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data.deletedCount > 0) {
+    //                     refetch();
+    //                     Swal.fire(
+    //                         'Done!',
+    //                         `Task ${name} Deleted Successfully`,
+    //                         'success'
+    //                     )
+    //                 }
+    //                 else {
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Oops... Something Went Wrong',
+    //                         text: `Can not Delete Task ${name}`
+    //                     })
+    //                 }
+    //             })
+    //     }
+    // }
+
+
+
+
+    
     const handleDeleteTask = (id, name) => {
-        const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
-        console.log(agree)
-        if (agree) {
-            fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
-                method: 'DELETE',
+        fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    Swal.fire(
+                        'Done!',
+                        `Task ${name} Deleted Successfully`,
+                        'success'
+                    )
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops... Something Went Wrong',
+                        text: `Can not Delete Task ${name}`
+                    })
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire(
-                            'Done!',
-                            `Task ${name} Deleted Successfully`,
-                            'success'
-                        )
-                    }
-                    else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops... Something Went Wrong',
-                            text: `Can not Delete Task ${name}`
-                        })
-                    }
-                })
-        }
     }
 
 

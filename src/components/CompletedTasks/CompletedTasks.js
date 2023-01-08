@@ -7,10 +7,13 @@ import UseTitle from '../Title/UseTitle';
 
 
 
+
+
+
 const CompletedTasks = () => {
 
     UseTitle('Completed Tasks');
-    
+
     const task = useLoaderData();
     const { taskName, taskDescription, _id, userEmail, taskImage, isCompleted, taskPostedDate } = task
     const navigate = useNavigate();
@@ -42,33 +45,62 @@ const CompletedTasks = () => {
 
 
 
-    const handleDeleteTask = (id, name) => {
-        const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
-        console.log(agree)
-        if (agree) {
-            fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire(
-                            'Done!',
-                            `Task ${name} Deleted Successfully`,
-                            'success'
-                        )
-                        navigate('/myTasks');
-                    }
-                    else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops... Something Went Wrong',
-                            text: `Can not Delete Task ${name}`
-                        })
-                    }
-                })
-        }
+    // const handleDeleteTask = (id, name) => {
+    //     const agree = window.confirm(`Are You sure you want to delete the Task ${name}`);
+    //     console.log(agree)
+    //     if (agree) {
+    //         fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
+    //             method: 'DELETE',
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data.deletedCount > 0) {
+    //                     Swal.fire(
+    //                         'Done!',
+    //                         `Task ${name} Deleted Successfully`,
+    //                         'success'
+    //                     )
+    //                     navigate('/myTasks');
+    //                 }
+    //                 else {
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Oops... Something Went Wrong',
+    //                         text: `Can not Delete Task ${name}`
+    //                     })
+    //                 }
+    //             })
+    //     }
 
+    // }
+
+
+
+
+
+    //Delete Task 
+    const handleDeleteTask = (id, name) => {
+        fetch(`https://task-manager-server-silk.vercel.app/deleteTask/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    Swal.fire(
+                        'Done!',
+                        `Task ${name} Deleted Successfully`,
+                        'success'
+                    )
+                    navigate('/myTasks');
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops... Something Went Wrong',
+                        text: `Can not Delete Task ${name}`
+                    })
+                }
+            })
     }
 
 
