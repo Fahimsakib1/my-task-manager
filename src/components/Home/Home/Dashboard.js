@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AiOutlineAppstoreAdd, AiOutlineFileDone, AiOutlineEye } from 'react-icons/ai';
 import { BsListTask } from 'react-icons/bs';
 import { IoMdAdd } from 'react-icons/io';
@@ -8,11 +8,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import Clock from 'react-live-clock';
 import moment from 'moment';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+
 
 
 const Dashboard = () => {
-
-
 
     //completed task
     const { user } = useContext(AuthContext)
@@ -29,6 +32,12 @@ const Dashboard = () => {
             .then(res => res.json())
     })
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000
+        })
+    }, [])
+
 
     return (
         <div className=''>
@@ -38,7 +47,7 @@ const Dashboard = () => {
             </div> */}
 
 
-            <div className='relative group  w-[260px] md:w-[310px] mx-auto text-center mt-16 mb-8' >
+            <div className='relative group  w-[275px] sm:w-[260px] md:w-[310px] mx-auto text-center mt-12 mb-12' >
                 <div className='absolute -inset-0.5 mt-4 rounded-xl blur bg-gradient-to-r from-pink-500 to-violet-600 opacity-70 group-hover:opacity-90 transition duration-300 '>
                 </div>
                 <button className='w-full py-2 text-center text-white text-2xl  bg-gray-900 rounded-xl leading-none relative transition duration-300 ease-in-out delay-150 group-hover:-translate-y-0.5 group-hover:scale-102'>
@@ -48,7 +57,7 @@ const Dashboard = () => {
             </div>
 
 
-            <div className='flex justify-center items-center my-auto gap-x-16 mx-auto  lg:flex-row flex-col lg:gap-y-0 gap-y-8 mb-20 '>
+            <div className='flex justify-center items-center my-auto gap-x-16 mx-auto  lg:flex-row flex-col lg:gap-y-0 gap-y-8 mb-20 animation' data-aos='zoom-in'>
 
                 <Link to='/addTasks' className="flex flex-col justify-center  p-6  rounded-2xl sm:px-8  w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto shadow-2xl bg-gray-900 dark:bg-gray-800 text-gray-100 lg:px-16 border-r-8 border-r-amber-600 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300" title='Add New Task'>
                     <div>
@@ -65,7 +74,7 @@ const Dashboard = () => {
                     </div>
                 </Link>
 
-                <Link to='/myTasks' className="flex flex-col justify-center  p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-16 border-r-8 border-r-teal-700 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300" title='See Your Listed Tasks '>
+                <Link to='/myTasks' className="flex flex-col justify-center  p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-16 border-r-8 border-r-teal-700 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 "  title='See Your Listed Tasks'>
                     <div >
                         <BsListTask className="text-white w-40 h-36 mx-auto rounded-md bg-teal-800 aspect-square"></BsListTask>
                         <div className="space-y-4 text-center divide-y divide-gray-700">
@@ -82,7 +91,7 @@ const Dashboard = () => {
                 </Link>
 
 
-                <Link to='/displayCompletedTasks' className="flex flex-col justify-center p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-12 border-r-8 border-r-violet-900 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 " title='All Completed Tasks'>
+                <Link to='/displayCompletedTasks' className="flex flex-col justify-center p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-12 border-r-8 border-r-violet-900   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300" title='All Completed Tasks'>
                     <div >
                         <AiOutlineFileDone className="w-40 h-36 mx-auto rounded-md bg-violet-900 aspect-square"></AiOutlineFileDone>
                         <div className="space-y-4 text-center divide-y divide-gray-700">
