@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
@@ -7,7 +7,7 @@ import './AddTask.css'
 import { useNavigate } from 'react-router-dom';
 import SmallSpinner from '../Spinner/SmallSpinner/SmallSpinner';
 import UseTitle from '../Title/UseTitle';
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const AddTask = () => {
@@ -30,8 +30,20 @@ const AddTask = () => {
     // console.log("Image Host Key", imageHostKey);
 
 
+  
+    
+    
     const handleAddTasks = (data) => {
 
+        // if(buttonVisible){
+        //     return  Swal.fire(
+        //         'Sorry!',
+        //         'Button Disabled. Please Check the Captcha',
+        //         'success'
+        //     )
+        // }
+        
+        
         console.log(data.name, data.email, data.photo[0], data.description);
         setError('');
         setLoading(true);
@@ -125,6 +137,12 @@ const AddTask = () => {
 
     }
 
+    //These Lines are for Captcha Only
+    // const [buttonVisible, setButtonVisible] = useState(false);
+    // function onChange() {
+    //     setButtonVisible(true);
+    // }
+
 
 
 
@@ -189,7 +207,13 @@ const AddTask = () => {
                         {errors.description && <p className='text-red-600'>{errors.description?.message}</p>}
 
 
-                        <button type="submit" className="w-full py-[10px] font-semibold rounded text-white   bg-gradient-to-r from-violet-900 to-pink-900  addTaskButton">
+                        {/* <ReCAPTCHA
+                            sitekey="6LfOF-4jAAAAAImjE8GZMCKHjVeEyOz0U2PKXvRK"
+                            onChange={onChange}
+                        /> */}
+
+
+                        <button type="submit" className="w-full py-[10px] font-semibold rounded text-white   bg-gradient-to-r from-violet-900 to-pink-900  addTaskButton" >
                             {
                                 loading ?
                                     <div className='flex justify-center items-center '>
@@ -201,10 +225,23 @@ const AddTask = () => {
                             }
                         </button>
 
+                        {/* <button type="submit" className={`w-full py-[10px] font-semibold rounded text-white    addTaskButton  ${buttonVisible ? `bg-gradient-to-r from-violet-900 to-pink-900 ` : `bg-gray-500`}`} disabled={!buttonVisible}>
+                            {
+                                loading ?
+                                    <div className='flex justify-center items-center '>
+                                        <SmallSpinner></SmallSpinner>
+                                        <p className='ml-2'>Processing</p>
+                                    </div>
+                                    :
+                                    <h1 className='uppercase'>Add Task</h1>
+                            }
+                        </button> */}
+
 
                     </form>
                 </div>
             </section>
+
         </div>
     );
 };

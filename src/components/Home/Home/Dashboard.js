@@ -50,7 +50,7 @@ const Dashboard = () => {
             <div className='relative group  w-[275px] sm:w-[260px] md:w-[310px] mx-auto text-center mt-12 mb-12' >
                 <div className='absolute -inset-0.5 mt-4 rounded-xl blur bg-gradient-to-r from-pink-500 to-violet-600 opacity-70 group-hover:opacity-90 transition duration-300 '>
                 </div>
-                <button className='w-full py-2 text-center text-white text-2xl  bg-gray-900 rounded-xl leading-none relative transition duration-300 ease-in-out delay-150 group-hover:-translate-y-0.5 group-hover:scale-102'>
+                <button className='w-full py-2 text-center text-white text-2xl  bg-gray-900 dark:bg-gray-800 rounded-xl leading-none relative transition duration-300 ease-in-out delay-150 group-hover:-translate-y-0.5 group-hover:scale-102'>
                     <Clock format={'HH:mm:ss A'} ticking={true} className='text-4xl md:text-[34px] text-center font-mono ' />
                     <h1 className=' mb-1 '>{moment().format('LL')}</h1>
                 </button>
