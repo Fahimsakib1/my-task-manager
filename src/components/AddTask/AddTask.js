@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import SmallSpinner from '../Spinner/SmallSpinner/SmallSpinner';
 import UseTitle from '../Title/UseTitle';
 import ReCAPTCHA from "react-google-recaptcha";
+import Cursor from 'react-cursor-follow';
+
 
 
 const AddTask = () => {
@@ -30,9 +32,9 @@ const AddTask = () => {
     // console.log("Image Host Key", imageHostKey);
 
 
-  
-    
-    
+
+
+
     const handleAddTasks = (data) => {
 
         // if(buttonVisible){
@@ -42,8 +44,8 @@ const AddTask = () => {
         //         'success'
         //     )
         // }
-        
-        
+
+
         console.log(data.name, data.email, data.photo[0], data.description);
         setError('');
         setLoading(true);
