@@ -7,11 +7,14 @@ import { RouterProvider } from 'react-router-dom';
 import router from './components/Router/Router/Router';
 import { Toaster } from 'react-hot-toast';
 import Cursor from 'react-cursor-follow';
+import ProgressBar from "react-scroll-progress-bar";
+
 
 
 function App() {
   return (
     <div className='dark:bg-black dark:text-white'>
+      <ProgressBar bgcolor="#de8d12"/>
       <RouterProvider router={router}>
       </RouterProvider>
       <Toaster></Toaster>
