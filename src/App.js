@@ -6,7 +6,7 @@ import AddTask from './components/AddTask/AddTask';
 import { RouterProvider } from 'react-router-dom';
 import router from './components/Router/Router/Router';
 import { Toaster } from 'react-hot-toast';
-import Cursor from 'react-cursor-follow';
+// import Cursor from 'react-cursor-follow';
 import ProgressBar from "react-scroll-progress-bar";
 
 
@@ -18,13 +18,13 @@ function App() {
       <RouterProvider router={router}>
       </RouterProvider>
       <Toaster></Toaster>
-      <Cursor
+      {/* <Cursor
         pulse
         color='#4513d1'
         duration={0.3}
         size={40}
         opacity='0.6' >
-      </Cursor>
+      </Cursor> */}
     </div>
   );
 }

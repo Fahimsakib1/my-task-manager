@@ -10,6 +10,8 @@ import Clock from 'react-live-clock';
 import moment from 'moment';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Cursor from 'react-cursor-follow';
+import { useState } from 'react';
 
 
 
@@ -39,19 +41,81 @@ const Dashboard = () => {
     }, [])
 
 
+
+
+
+
+
+
+
+    //function and state for time
+    const [time, setTime] = useState(getCurrentTime());
+    useEffect(() => {
+        const intervalID = setInterval(() => {
+            setTime(getCurrentTime());
+        }, 1000); // Update after every 1 second
+        return () => {
+            clearInterval(intervalID);
+        };
+    }, []);
+
+    function getCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const meridian = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        const formattedMinutes = padZero(minutes);
+        const formattedSeconds = padZero(seconds);
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${meridian}`;
+    }
+
+    function padZero(num) {
+        return num < 10 ? `0${num}` : num;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className=''>
-
-            {/* <div className='text-center mt-16 md:mt-20 mb-8 '>
-                <Clock format={'HH:mm:ss A'} ticking={true} className='text-4xl md:text-5xl text-center bg-red-600 px-8 rounded-lg' />
-            </div> */}
-
 
             <div className='relative group  w-[275px] sm:w-[260px] md:w-[310px] mx-auto text-center mt-12 mb-12' >
                 <div className='absolute -inset-0.5 mt-4 rounded-xl blur bg-gradient-to-r from-pink-500 to-violet-600 opacity-70 group-hover:opacity-90 transition duration-300 '>
                 </div>
                 <button className='w-full py-2 text-center text-white text-2xl  bg-gray-900 dark:bg-gray-800 rounded-xl leading-none relative transition duration-300 ease-in-out delay-150 group-hover:-translate-y-0.5 group-hover:scale-102'>
-                    <Clock format={'HH:mm:ss A'} ticking={true} className='text-4xl md:text-[34px] text-center font-mono ' />
+                    {/* <Clock format={'HH:mm:ss A'} ticking={true} className='text-4xl md:text-[34px] text-center font-mono ' /> */}
+                    <span className='text-4xl md:text-[34px] text-center font-mono '>{time}</span>
                     <h1 className=' mb-1 '>{moment().format('LL')}</h1>
                 </button>
             </div>
@@ -74,7 +138,7 @@ const Dashboard = () => {
                     </div>
                 </Link>
 
-                <Link to='/myTasks' className="flex flex-col justify-center  p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-16 border-r-8 border-r-teal-700 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 "  title='See Your Listed Tasks'>
+                <Link to='/myTasks' className="flex flex-col justify-center  p-6 shadow-md rounded-2xl sm:px-8 bg-gray-900 dark:bg-gray-800 text-gray-100 w-3/4 sm:w-3/4 md:w-1/2 lg:w-auto lg:px-16 border-r-8 border-r-teal-700 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 " title='See Your Listed Tasks'>
                     <div >
                         <BsListTask className="text-white w-40 h-36 mx-auto rounded-md bg-teal-800 aspect-square"></BsListTask>
                         <div className="space-y-4 text-center divide-y divide-gray-700">
@@ -109,6 +173,13 @@ const Dashboard = () => {
                 </Link>
 
             </div>
+            {/* <Cursor
+                pulse
+                color='#4513d1'
+                duration={0.3}
+                size={40}
+                opacity='0.6' >
+            </Cursor> */}
 
         </div>
     );

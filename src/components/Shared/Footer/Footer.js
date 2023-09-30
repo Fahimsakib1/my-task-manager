@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
+    
+    
+    const date = new Date();
+    const year = date.getFullYear();
+    
+    
     return (
         <div className='print:hidden'>
 
@@ -31,7 +37,7 @@ const Footer = () => {
                 </div>
             </footer>
 
-            <div className="text-sm text-center text-gray-400 bg-black pb-4 dark:bg-gray-900">© 2022 Daily Tasks. All Rights Reserved By Fahim Faysal
+            <div className="text-sm text-center text-gray-400 bg-black pb-4 dark:bg-gray-900">© {year} Daily Tasks. All Rights Reserved By Fahim Faysal
             </div>
 
 
